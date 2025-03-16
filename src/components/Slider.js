@@ -20,21 +20,16 @@ export default function Slider({images}) {
       };
     
     const startInterval = useCallback(() => {
-    if (intervalRef.current) {
-        clearInterval(intervalRef.current); 
-    }
-    intervalRef.current = setInterval(nextSlide, delay);
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current); 
+        }
+        intervalRef.current = setInterval(nextSlide, delay);
     }, [nextSlide, delay]);
 
     useEffect(() => {
         startInterval();
         return () => clearInterval(intervalRef.current);
     }, [nextSlide, startInterval]);
-    
-
-    useEffect(() => {
-        startInterval();
-    }, [currentIndex, startInterval]);
 
     return (
         <div className="slider">
